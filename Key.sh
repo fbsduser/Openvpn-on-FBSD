@@ -17,7 +17,11 @@
 ####################################################################
 cd /usr/local/etc/openvpn/easy-rsa/
 user=$1  dn=$2
-EASYRSA_CERT_EXPIRE=3650 ./easyrsa.real build-client-full $user  nopass >/dev/null 2>&1
+#EASYRSA_CERT_EXPIRE=3650 ./easyrsa build-client-full $user  nopass >/dev/null 2>&1 OPENSSL OP CHANGED.escape shitf zz lolz
+EASYRSA_CERT_EXPIRE=3650 ; cat << EOF | ./easyrsa build-client-full $user  nopass 
+yes
+EOF
+###
 file_="/usr/local/etc/openvpn/tc/users/$user"
 #remote "`curl -s https://checkip.amazonaws.com`" 7612 
 echo << EOF "
